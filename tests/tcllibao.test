@@ -1,0 +1,97 @@
+# tcllibao.test --
+#
+#	Tests for tcllibao
+#------------------------------------------------------------------------------
+
+lappend auto_path .
+if {[lsearch [namespace children] ::tcltest] == -1} {
+    package require tcltest 2
+    namespace import -force ::tcltest::*
+}
+loadTestedCommands
+package require libao
+
+
+#-------------------------------------------------------------------------------
+
+
+test libao-1.1 {initialize} {*}{
+    -body {
+        catch {libao::ao initialize}
+    }
+    -result {0}
+}
+
+test libao-1.2 {driver_id wrong name} {*}{
+    -body {
+        catch {set testid [libao::ao driver_id wrong]}
+    }
+    -result {1}
+}
+
+test libao-1.3 {driver_id} {*}{
+    -body {
+        catch {set testid [libao::ao driver_id null]}
+    }
+    -result {0}
+}
+
+test libao-1.4 {open_live wrong bits} {*}{
+    -body {
+        libao::ao open_live $testid -bits test
+    }
+    -returnCodes error
+    -match glob
+    -result {expected integer*}
+}
+
+test libao-1.5 {open_live wrong samplerate} {*}{
+    -body {
+        libao::ao open_live $testid -rate samplerate
+    }
+    -returnCodes error
+    -match glob
+    -result {expected integer*}
+}
+
+test libao-1.6 {open_live wrong channels} {*}{
+    -body {
+        libao::ao open_live $testid -channels channels
+    }
+    -returnCodes error
+    -match glob
+    -result {expected integer*}
+}
+
+test libao-1.7 {open_live wrong parameters} {*}{
+    -body {
+        libao::ao open_live $testid -channels
+    }
+    -returnCodes error
+    -match glob
+    -result {wrong # args*}
+}
+
+test libao-1.8 {open_live} {*}{
+    -body {
+        catch {libao::ao open_live $testid}
+    }
+    -result {0}
+}
+
+test libao-1.9 {close} {*}{
+    -body {
+        libao::ao close
+    }
+    -result {1}
+}
+
+test libao-1.10 {shutdown} {*}{
+    -body {
+        catch {libao::ao shutdown}
+    }
+    -result {0}
+}
+
+cleanupTests
+return

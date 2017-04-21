@@ -1,0 +1,22 @@
+2016-12-14  Danilo Chang
+
+    * Setup version to 0.2
+
+2016-12-13  Danilo Chang
+
+    * Add basic tests
+
+2016-12-10  Danilo Chang
+
+    * Update README.md
+    * generic/tcllibao.c: add more comments
+
+2016-12-09  Danilo Chang
+
+    * Update README.md
+
+2016-12-08  Danilo Chang
+
+    * Implement libao command
+    * Download sample extension
+
