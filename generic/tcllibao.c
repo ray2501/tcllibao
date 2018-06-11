@@ -1,7 +1,7 @@
 /*
  * tcllibao.c
  *
- *      Copyright (C) Danilo Chang - December 2016, 2017
+ *      Copyright (C) Danilo Chang - December 2016, 2017, 2018
  *
  ********************************************************************/
 
@@ -337,7 +337,7 @@ static int Libao_Cmd(ClientData arg, Tcl_Interp * interp, int objc, Tcl_Obj * CO
 
     case CMD_PLAY: {
       Tcl_Obj *return_obj;
-      char *zData = NULL;
+      unsigned char *zData = NULL;
       int len;
       int result;
 
@@ -351,12 +351,12 @@ static int Libao_Cmd(ClientData arg, Tcl_Interp * interp, int objc, Tcl_Obj * CO
         return TCL_ERROR;
       }
 
-      zData = Tcl_GetStringFromObj(objv[2], &len);
+      zData = Tcl_GetByteArrayFromObj(objv[2], &len);
       if( !zData || len < 1 ){
           return TCL_ERROR;
       }
 
-      result = ao_play(device, zData, (uint_32) len);
+      result = ao_play(device, (char *) zData, (uint_32) len);
 
       return_obj = Tcl_NewBooleanObj(result);
       Tcl_SetObjResult(interp, return_obj);
