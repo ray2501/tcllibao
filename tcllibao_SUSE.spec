@@ -8,7 +8,7 @@ Version:       0.2
 Release:       2
 License:       GPL 2.0
 Group:         Development/Libraries/Tcl
-Source:        https://github.com/ray2501/tcllibao/tcllibao_0.2.zip
+Source:        %{name}-%{version}.tar.gz
 URL:           https://github.com/ray2501/tcllibao
 BuildRequires: autoconf
 BuildRequires: make
@@ -22,7 +22,7 @@ BuildRoot:     %{buildroot}
 Tcl bindings for libao.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name}-%{version}
 
 %build
 ./configure \
