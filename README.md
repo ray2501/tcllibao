@@ -77,7 +77,7 @@ below is an example:
 WINDOWS BUILD
 =====
 
-##MSYS2/MinGW-W64
+## MSYS2/MinGW-W64
 
 First step is to download the libao source package.
 
