@@ -4,7 +4,7 @@
 
 Name:          tcllibao
 Summary:       Tcl bindings for libao
-Version:       0.3
+Version:       0.4
 Release:       0
 License:       GPL-2.0-or-later
 Group:         Development/Libraries/Tcl
