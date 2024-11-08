@@ -37,7 +37,7 @@ int initialize = 0;
 TCL_DECLARE_MUTEX(myMutex);
 
 
-static int Libao_Cmd(ClientData arg, Tcl_Interp * interp, int objc, Tcl_Obj * CONST objv[])
+static int Libao_Cmd(ClientData arg, Tcl_Interp * interp, int objc, Tcl_Obj * const objv[])
 {
   int cmd;
 
@@ -46,7 +46,7 @@ static int Libao_Cmd(ClientData arg, Tcl_Interp * interp, int objc, Tcl_Obj * CO
     CMD_PLAY, CMD_CLOSE, CMD_SHUTDOWN
   };
 
-  static CONST char *sCmd[] = {
+  static const char *sCmd[] = {
     "initialize", "default_id", "driver_id", "open_live", "open_file",
     "play", "close", "shutdown",
     0
@@ -107,7 +107,7 @@ static int Libao_Cmd(ClientData arg, Tcl_Interp * interp, int objc, Tcl_Obj * CO
       */
       Tcl_Obj *return_obj;
       char *short_name = NULL;
-      int len;
+      Tcl_Size len;
       int result;
 
       if( objc != 3){
@@ -239,7 +239,7 @@ static int Libao_Cmd(ClientData arg, Tcl_Interp * interp, int objc, Tcl_Obj * CO
       int byteformat = 4;
       char *filename;
       Tcl_DString translatedFilename;
-      int len;
+      Tcl_Size len;
       int overwrite = 0;
 
       if( objc < 4 || (objc&1)!=0){
@@ -338,7 +338,7 @@ static int Libao_Cmd(ClientData arg, Tcl_Interp * interp, int objc, Tcl_Obj * CO
     case CMD_PLAY: {
       Tcl_Obj *return_obj;
       unsigned char *zData = NULL;
-      int len;
+      Tcl_Size len;
       int result;
 
       if( objc != 3){
@@ -438,7 +438,7 @@ Libao_Init(Tcl_Interp *interp)
 	return TCL_ERROR;
     }
 
-    Tcl_CreateObjCommand(interp, "libao::ao", Libao_Cmd, NULL, NULL);
+    Tcl_CreateObjCommand(interp, "::libao::ao", Libao_Cmd, NULL, NULL);
 
     return TCL_OK;
 }
